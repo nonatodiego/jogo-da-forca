@@ -109,7 +109,7 @@ function updateWrongLettersEl(){
 
     // Verifica se perdeu e mostra mensagem
     if(wrongLetter.length === figureParts.length) {
-        finalMessage.innerText = 'Você perdeu! 🙁'
+        finalMessage.innerHTML = "<img src=\"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgifimage.net%2Fwp-content%2Fuploads%2F2017%2F07%2Fgame-over-gif-26.gif&f=1&nofb=1\" width=\"100%\" height=\"150%\">"
         popup.style.display = 'flex'
     }
     
