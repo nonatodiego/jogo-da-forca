@@ -1,6 +1,6 @@
 const wordEl = document.getElementById('word')
-const wrongLetterEl = document.getElementById('wrong-letter')
-const playAgainBtn = document.getElementById('play-again')
+const wrongLettersEl = document.getElementById('wrong-letters')
+const playAgainBtn = document.getElementById('play-button')
 const popup = document.getElementById('popup-container')
 const notification = document.getElementById('notification-container')
 const finalMessage = document.getElementById('final-message')
@@ -61,10 +61,10 @@ const words =
 
 let selectedWord = words[Math.floor(Math.random() * words.length)]
 
-const correctLetter = ['b','u','r','r','o']
+const correctLetter = []
 const wrongLetter = []
 
-// mostra 
+// mostra as letras no display
 function displayWord() {
     wordEl.innerHTML = `
         ${selectedWord
@@ -87,5 +87,83 @@ function displayWord() {
     }
 }
 
+// atualizando o array de letras erradas
+function updateWrongLettersEl(){
+    // mostra as letras erradas
+    wrongLettersEl.innerHTML = `
+        ${wrongLetter.length > 0 ? '<p>errou</p>' : ''}
+        ${wrongLetter.map(letter => `<span>${letter}</span>`)}
+    `;
+
+    // mostra o bonequinho na forca
+    figureParts.forEach((part,index) => {
+        const errors = wrongLetter.length
+
+        if(index < errors) {
+            part.style.display = 'block'
+        } else {
+            part.style.display = 'none'
+        }
+    })
+
+    // Verifica se perdeu
+    if(wrongLetter.length === figureParts.length) {
+        finalMessage.innerText = 'Você perdeu! 🦹‍♂️'
+        popup.style.display = 'flex'
+    }
+    
+}
+
+// mostrar notification
+function showNotification() {
+    notification.classList.add('show')
+
+    setTimeout(() => {
+    notification.classList.remove('show')        
+    }, 5000);
+}
+
+
+//  saber a letra digitada
+window.addEventListener('keydown', e => {
+    // console.log(e.keyCode)
+    if(e.keyCode >= 65 && e.keyCode <= 90) {
+        // console.log(123)
+        const letter = e.key
+
+        if(selectedWord.includes(letter)){
+            if(!correctLetter.includes(letter)){
+                correctLetter.push(letter)
+
+                displayWord()
+            } else {
+                showNotification()
+            }
+        } else {
+            if(!wrongLetter.includes(letter)) {
+                wrongLetter.push(letter)
+
+                updateWrongLettersEl()
+            } else {
+                showNotification()
+            }
+        }
+    }
+})
+
+// Recomeça o jogo
+playAgainBtn.addEventListener('click', () => {
+    correctLetter.splice(0);
+    wrongLetter.splice(0);
+
+    selectedWord = words[Math.floor(Math.random() * words.length)]
+
+    displayWord()
+
+    updateWrongLettersEl()
+
+    popup.style.display = 'none'
+})
+
 displayWord()
-console.log(selectedWord)
+// console.log(selectedWord)
