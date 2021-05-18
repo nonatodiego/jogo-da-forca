@@ -13,50 +13,50 @@ const words =
     "alpaca",
     "formiga",
     "burro",
-    // "texugo",
-    // "barracuda",
-    // "morcego",
-    // "urso",
-    // "castor",
-    // "abelha",
-    // "javali",
-    // "borboleta",
-    // "camelo",
-    // "capivara",
-    // "gato",
-    // "lagarta",
-    // "gado",
-    // "frango",
-    // "chinchilla",
-    // "cobra",
-    // "barata",
-    // "bacalhau",    
-    // "llama",
-    // "lagosta",
-    // "gafanhoto",
-    // "macaco",
-    // "alce",   
-    // "ovelhas",
-    // "caracol",
-    // "cobra",
-    // "pardal",
-    // "aranha",
-    // "lula",
-    // "esquilo",
-    // "cegonha",
-    // "cisne",
-    // "tigre",
-    // "sapo",
-    // "truta",
-    // "tartaruga",
-    // "abutre",
-    // "morsa",
-    // "vespa",
-    // "baleia",
-    // "lobo",
-    // "galinhola",
-    // "minhoca",    
-    // "zebra",
+    "texugo",
+    "barracuda",
+    "morcego",
+    "urso",
+    "castor",
+    "abelha",
+    "javali",
+    "borboleta",
+    "camelo",
+    "capivara",
+    "gato",
+    "lagarta",
+    "gado",
+    "frango",
+    "chinchilla",
+    "cobra",
+    "barata",
+    "bacalhau",    
+    "llama",
+    "lagosta",
+    "gafanhoto",
+    "macaco",
+    "alce",   
+    "ovelhas",
+    "caracol",
+    "cobra",
+    "pardal",
+    "aranha",
+    "lula",
+    "esquilo",
+    "cegonha",
+    "cisne",
+    "tigre",
+    "sapo",
+    "truta",
+    "tartaruga",
+    "abutre",
+    "morsa",
+    "vespa",
+    "baleia",
+    "lobo",
+    "galinhola",
+    "minhoca",    
+    "zebra",
 ]
 
 let selectedWord = words[Math.floor(Math.random() * words.length)]
@@ -80,7 +80,8 @@ function displayWord() {
     ` 
 
     const innerWord = wordEl.innerText.replace(/\n/g,'')
-
+    
+    // Mensagem de vitória
     if(innerWord === selectedWord) {
         finalMessage.innerText = 'Parabéns, você ganhou ✨';
         popup.style.display = 'flex'
@@ -106,9 +107,9 @@ function updateWrongLettersEl(){
         }
     })
 
-    // Verifica se perdeu
+    // Verifica se perdeu e mostra mensagem
     if(wrongLetter.length === figureParts.length) {
-        finalMessage.innerText = 'Você perdeu! 🦹‍♂️'
+        finalMessage.innerText = 'Você perdeu! 🙁'
         popup.style.display = 'flex'
     }
     
